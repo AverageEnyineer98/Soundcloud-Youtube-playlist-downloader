@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# PyInstaller build output
+build/
+dist/
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+
+# Bundled ffmpeg (drop ffmpeg.exe here to embed it in builds)
+ffmpeg/
+
+# Local test/temp artifacts
+*.part
+*.tmp
+
+# Local tool config
+.claude/
