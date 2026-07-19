@@ -160,17 +160,22 @@ def get_ffmpeg_path() -> str | None:
     2. Bundled with app (for PyInstaller builds)
     3. Common Windows install locations
     """
+    # Bundled FFmpeg first (PyInstaller) — build.py adds the ffmpeg/
+    # folder into the bundle. Preferring it over PATH keeps the packaged
+    # app's behavior identical on every machine.
+    if getattr(sys, "frozen", False):
+        bundle_dir = sys._MEIPASS
+        for bundled in (
+            os.path.join(bundle_dir, "ffmpeg", "ffmpeg.exe"),
+            os.path.join(bundle_dir, "ffmpeg.exe"),
+        ):
+            if os.path.exists(bundled):
+                return bundled
+
     # Check system PATH
     path = shutil.which("ffmpeg")
     if path:
         return path
-
-    # Check bundled location (PyInstaller)
-    if getattr(sys, "frozen", False):
-        bundle_dir = sys._MEIPASS
-        bundled = os.path.join(bundle_dir, "ffmpeg.exe")
-        if os.path.exists(bundled):
-            return bundled
 
     # Check next to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))

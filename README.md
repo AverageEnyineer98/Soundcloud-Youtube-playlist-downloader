@@ -2,6 +2,14 @@
 
 A modern Windows desktop app for downloading **SoundCloud** and **YouTube** playlists or single tracks as high-quality audio files (WAV, MP3, FLAC and more), with a clean dark UI, smart quality selection, and automatic recovery from rate limiting.
 
+## ⬇ Download
+
+**[Download SoundWave Downloader.exe](https://github.com/AverageEnyineer98/Soundcloud-Youtube-playlist-downloader/raw/main/dist/SoundWave%20Downloader.exe)** (~82 MB)
+
+Fully standalone — Python, yt-dlp and **FFmpeg are all bundled inside**. No installation, nothing else to download: run it on any Windows 10/11 PC, even a fresh one.
+
+> **Note:** The exe is not code-signed, so the first launch may show a Windows SmartScreen warning — click **More info → Run anyway**. The first start takes a few seconds while the app unpacks itself.
+
 ![Main window](docs/screenshot-main.png)
 
 ## Features
@@ -29,12 +37,16 @@ All settings:
 
 ## Requirements
 
+**Using the packaged `.exe`: none** — everything (Python, yt-dlp, FFmpeg) is bundled.
+
+Running from source only:
+
 - **Windows 10/11**
+- **Python 3.11+**
 - **[FFmpeg](https://ffmpeg.org/download.html)** — required for audio conversion. Easiest install:
   ```
   winget install ffmpeg
   ```
-- **Python 3.11+** (only if running from source — the packaged `.exe` includes everything else)
 
 ## Run from source
 
@@ -53,7 +65,7 @@ python build.py
 
 The single-file executable is written to `dist\SoundWave Downloader.exe`. Notes:
 
-- FFmpeg is not bundled by default — install it on the target machine, or place `ffmpeg.exe` in an `ffmpeg\` folder next to `build.py` before building to embed it.
+- To bundle FFmpeg (recommended, makes the exe fully standalone): place `ffmpeg.exe` in an `ffmpeg\` folder next to `build.py` before building. Get it from [gyan.dev/ffmpeg/builds](https://www.gyan.dev/ffmpeg/builds/) — the *essentials* build is enough and keeps the exe under GitHub's 100 MB file limit.
 - The packaged exe pins its bundled `yt-dlp` version. If SoundCloud/YouTube change their sites and downloads start failing, rebuild to pick up the latest `yt-dlp`. (When running from source, the app auto-updates `yt-dlp` on launch.)
 
 ## Usage

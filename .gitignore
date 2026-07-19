@@ -3,9 +3,10 @@ __pycache__/
 *.pyc
 *.pyo
 
-# PyInstaller build output
+# PyInstaller build output (except the released exe, which the README links to)
 build/
-dist/
+dist/*
+!dist/SoundWave Downloader.exe
 *.spec
 
 # Virtual environments
